@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>Locus Notes</title>
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div><strong>Locus</strong><small>ваши мысли, на месте</small></div>
+        </div>
+        <button id="new-note" class="new-note" data-testid="new-note"><span>＋</span> Новая заметка <kbd>Ctrl N</kbd></button>
+        <nav id="sidebar-nav" aria-label="Навигация"></nav>
+        <div class="sidebar-footer">
+          <button id="open-data" title="Открыть папку с заметками">⌂ <span>Папка данных</span></button>
+          <button id="export-data" title="Экспортировать все заметки">⇧ <span>Экспорт</span></button>
+        </div>
+      </aside>
+
+      <section class="note-browser">
+        <div class="search-wrap">
+          <span aria-hidden="true">⌕</span>
+          <input id="search" data-testid="search" type="search" placeholder="Поиск по заметкам" autocomplete="off" />
+          <kbd>Ctrl F</kbd>
+        </div>
+        <div class="browser-heading">
+          <div><h1 id="list-title">Все заметки</h1><span id="note-count">0</span></div>
+          <button id="empty-trash-header" class="trash-header-button" data-testid="empty-trash-header" hidden>Очистить корзину</button>
+          <select id="sort-notes" aria-label="Сортировка">
+            <option value="updated">Сначала изменённые</option>
+            <option value="created">Сначала созданные</option>
+            <option value="title">По названию</option>
+          </select>
+        </div>
+        <div id="note-list" class="note-list" data-testid="note-list"></div>
+      </section>
+
+      <main id="workspace" class="workspace">
+        <div id="empty-state" class="empty-state">
+          <div class="empty-illustration"><span>✦</span></div>
+          <h2 id="empty-title">Здесь появится ваша первая мысль</h2>
+          <p id="empty-copy">Создайте заметку и просто начните писать.<br />Сохранение происходит автоматически.</p>
+          <button id="empty-create">Создать заметку</button>
+          <small>или нажмите <kbd>Ctrl N</kbd></small>
+        </div>
+        <div id="editor-host" class="editor-host" hidden></div>
+      </main>
+    </div>
+
+    <div id="quick-switch" class="modal-backdrop" hidden>
+      <section class="quick-dialog" role="dialog" aria-modal="true" aria-labelledby="quick-title">
+        <div class="quick-input-row"><span>⌕</span><input id="quick-input" placeholder="Перейти к заметке…" autocomplete="off" /></div>
+        <div class="quick-label" id="quick-title">Быстрый переход</div>
+        <div id="quick-results" class="quick-results"></div>
+        <footer><span><kbd>↑</kbd><kbd>↓</kbd> выбрать</span><span><kbd>Enter</kbd> открыть</span><span><kbd>Esc</kbd> закрыть</span></footer>
+      </section>
+    </div>
+    <div id="action-dialog" class="modal-backdrop" hidden>
+      <section class="action-dialog" role="dialog" aria-modal="true" aria-labelledby="action-title">
+        <h2 id="action-title">Подтверждение</h2>
+        <p id="action-message"></p>
+        <input id="action-input" data-testid="dialog-input" autocomplete="off" />
+        <footer>
+          <button id="action-cancel" class="secondary">Отмена</button>
+          <button id="action-confirm" data-testid="dialog-confirm">Продолжить</button>
+        </footer>
+      </section>
+    </div>
+    <div id="toast-region" class="toast-region" aria-live="polite"></div>
+    <script type="module" src="/app.ts"></script>
+  </body>
+</html>

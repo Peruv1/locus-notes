@@ -1,0 +1,58 @@
+# Dependencies, compiled Electron code, installers and local verification
+node_modules/
+/out/
+/release/
+/.release-check/
+.vite/
+coverage/
+test-results/
+playwright-report/
+/tests/diagnostics/
+
+# Local data (the normal data directory is outside the checkout)
+/notes/
+/attachments/
+/trash/
+/backups/
+/exports/
+/Locus Notes/
+/Locus Notes Export */
+/config.json
+/config.corrupt-*.json
+.electron-profile/
+electron-profile/
+Microsoft/Spelling/
+Cache/
+Code Cache/
+GPUCache/
+Crashpad/
+Crash Reports/
+
+# Credentials and machine-specific settings
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+.npmrc
+.aws/
+.ssh/
+.codex/
+.agents/
+.vscode/
+.idea/
+
+# Logs, temporary files and OS metadata
+*.log
+*.dmp
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+*.tsbuildinfo
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -1,0 +1,92 @@
+{
+  "name": "locus-notes",
+  "version": "1.3.0",
+  "description": "Local desktop notes with Markdown, LaTeX and safe section management",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "main": "out/main/index.js",
+  "author": "Locus Notes",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "npm run typecheck && electron-vite build",
+    "test": "vitest run",
+    "test:e2e": "npm run build && node tests/e2e.mjs",
+    "test:regression-ui": "npm run build && node tests/regression-ui.mjs",
+    "test:release-ui": "npm run build && node tests/release-ui.mjs",
+    "test:e2e:packaged": "node tests/packaged-e2e.mjs",
+    "test:packaged": "node tests/packaged-smoke.mjs",
+    "typecheck": "tsc --noEmit",
+    "dist": "npm run build && electron-builder --win nsis portable",
+    "dist:portable": "npm run build && electron-builder --win portable"
+  },
+  "dependencies": {
+    "dompurify": "3.4.16",
+    "highlight.js": "^11.11.1",
+    "katex": "^0.16.22",
+    "markdown-it": "^14.1.0",
+    "markdown-it-texmath": "^1.0.0",
+    "write-file-atomic": "^6.0.0",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^24.3.1",
+    "electron": "42.11.10",
+    "electron-builder": "^26.0.12",
+    "electron-vite": "^4.0.0",
+    "playwright-core": "^1.55.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.3",
+    "vitest": "^3.2.4"
+  },
+  "build": {
+    "appId": "ru.locus.notes",
+    "productName": "Locus Notes",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "LICENSE",
+        "to": "LICENSE"
+      },
+      {
+        "from": "THIRD_PARTY_NOTICES.md",
+        "to": "THIRD_PARTY_NOTICES.md"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "artifactName": "Locus-Notes-Setup-${version}-${arch}.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Locus Notes",
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "Locus-Notes-Portable-${version}-${arch}.${ext}"
+    }
+  },
+  "allowScripts": {
+    "electron@42.11.10": true,
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.2": true,
+    "electron-winstaller@5.4.0": true
+  }
+}
